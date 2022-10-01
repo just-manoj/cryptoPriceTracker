@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 15,
+    paddingHorizontal: 2,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'grey',
   },
@@ -16,7 +17,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 12,
+    fontSize: 13,
     marginRight: 5,
   },
   rank: {
@@ -27,7 +28,7 @@ export const styles = StyleSheet.create({
   rankContainer: {
     backgroundColor: '#585858',
     alignSelf: 'center',
-    paddingHorizontal: 6,
+    paddingHorizontal: 5,
     paddingVertical: 1,
     borderRadius: 5,
     marginRight: 5,

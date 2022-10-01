@@ -3,42 +3,74 @@ import { AntDesign } from '@expo/vector-icons';
 
 import { styles } from './styles';
 
-const CoinItem=()=>{
-    return(
-        <View style={styles.coinContainer}>
-        <Image
-          source={{
-            uri: 'https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579',
-          }}
-          style={{
-            height: 35,
-            width: 35,
-            marginRight: 10,
-            alignSelf: 'center',
-          }}
-        />
-        <View>
-          <Text style={styles.title}>Bitcoin</Text>
-          <View style={{ flexDirection: 'row' }}>
-            <View style={styles.rankContainer}>
-              <Text style={styles.rank}>1</Text>
-            </View>
-            <Text style={styles.text}>BTC</Text>
-            <AntDesign
-              name='caretdown'
-              size={15}
-              color='green'
-              style={{ alignSelf: 'center', marginRight: 3 }}
-            />
-            <Text style={styles.text}>0.83%</Text>
+const CoinItem = (props) => {
+  const {
+    name,
+    image,
+    market_cap_rank,
+    symbol,
+    current_price,
+    market_cap,
+    price_change_percentage_24h,
+  } = props;
+
+  const priceChangeColor =
+    price_change_percentage_24h >= 1 ? '#16c784' : '#ea3943';
+
+  const normalizeMarketCap = () => {
+    if (market_cap >= 1000000000000) {
+      return `${Math.floor(market_cap / 1000000000000)} T`;
+    }
+    if (market_cap >= 1000000000) {
+      return `${Math.floor(market_cap / 1000000000)} B`;
+    }
+    if (market_cap >= 1000000) {
+      return `${Math.floor(market_cap / 1000000)} M`;
+    }
+    if (market_cap >= 1000) {
+      return `${Math.floor(market_cap / 1000)} K`;
+    }
+    return market_cap;
+  };
+  return (
+    <View style={styles.coinContainer}>
+      <Image
+        source={{
+          uri: image,
+        }}
+        style={{
+          height: 35,
+          width: 35,
+          marginRight: 10,
+          alignSelf: 'center',
+        }}
+      />
+      <View>
+        <Text style={styles.title}>{name}</Text>
+        <View style={{ flexDirection: 'row' }}>
+          <View style={styles.rankContainer}>
+            <Text style={styles.rank}>{market_cap_rank}</Text>
           </View>
-        </View>
-        <View style={{ marginLeft: 'auto' }}>
-          <Text style={styles.title}>56265.76</Text>
-          <Text style={styles.text}>MCap 1.976 T</Text>
+          <Text style={styles.text}>{symbol.toUpperCase()}</Text>
+          <AntDesign
+            name={price_change_percentage_24h >= 1 ? 'caretup' : 'caretdown'}
+            size={15}
+            color={priceChangeColor}
+            style={{ alignSelf: 'center', marginRight: 3 }}
+          />
+          <Text style={[styles.text, { color: priceChangeColor }]}>
+            {price_change_percentage_24h.toFixed(2)}%
+          </Text>
         </View>
       </View>
-    )
-}
+      <View style={{ marginLeft: 'auto', alignItems: 'flex-end' }}>
+        <Text style={styles.title}>${current_price}</Text>
+        <Text style={{ color: 'white', fontSize: 13 }}>
+          MCap {normalizeMarketCap()}
+        </Text>
+      </View>
+    </View>
+  );
+};
 
 export default CoinItem;
