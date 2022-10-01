@@ -19,16 +19,16 @@ const CoinItem = (props) => {
 
   const normalizeMarketCap = () => {
     if (market_cap >= 1000000000000) {
-      return `${Math.floor(market_cap / 1000000000000)} T`;
+      return `${Math.floor(market_cap / 1000000000000)}T`;
     }
     if (market_cap >= 1000000000) {
-      return `${Math.floor(market_cap / 1000000000)} B`;
+      return `${Math.floor(market_cap / 1000000000)}B`;
     }
     if (market_cap >= 1000000) {
-      return `${Math.floor(market_cap / 1000000)} M`;
+      return `${Math.floor(market_cap / 1000000)}M`;
     }
     if (market_cap >= 1000) {
-      return `${Math.floor(market_cap / 1000)} K`;
+      return `${Math.floor(market_cap / 1000)}K`;
     }
     return market_cap;
   };
