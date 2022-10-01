@@ -54,7 +54,7 @@ const CoinItem = (props) => {
           <Text style={styles.text}>{symbol.toUpperCase()}</Text>
           <AntDesign
             name={price_change_percentage_24h >= 1 ? 'caretup' : 'caretdown'}
-            size={15}
+            size={13}
             color={priceChangeColor}
             style={{ alignSelf: 'center', marginRight: 3 }}
           />
